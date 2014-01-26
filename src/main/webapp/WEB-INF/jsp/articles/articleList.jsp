@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="images/favicon.png">
 
-    <title>Off Canvas Template for Bootstrap</title>
+    <title>Blogger</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -31,27 +31,9 @@
   </head>
 
   <body>
-    <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">dcastelltort's blog</a>
-        </div>
-        <div class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container -->
-    </div><!-- /.navbar -->
 
+	<%@ include file="/WEB-INF/jspf/navbar.jspf" %>
+    
     <div class="container">
 
       <div class="row row-offcanvas row-offcanvas-right">
@@ -62,7 +44,7 @@
           </p>
           <div class="jumbotron">
             <h1>Everything technical</h1>
-            <p>Welcome on this blog about the journey of a programmer.</p>
+            <p>Welcome on the blog of a programmer's journey.</p>
           </div>
           <div class="row">
             <c:choose>
@@ -74,7 +56,7 @@
 						<c:url var="articleUrl" value="/articles/${article.name}/1" />
 			            <div class="col-6 col-sm-6 col-lg-4">
 			              <h2><c:out value="${article.title}" /></h2>
-			              <p>description : <c:out value="${article.description}" /></p>
+			              <p><c:out value="${article.description}" /></p>
 			              <p><a class="btn btn-default" href="${articleUrl}" role="button">Read more &raquo;</a></p>             
 			            </div><!--/span-->
 			        </c:forEach>
@@ -84,8 +66,8 @@
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-          <div class="list-group">
             <a href="#" class="list-group-item">Link</a>
+          <div class="list-group">
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>
             <a href="#" class="list-group-item">Link</a>

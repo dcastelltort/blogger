@@ -29,7 +29,29 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
-		<c:if test="${not empty article.description}">
+		<meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <link rel="shortcut icon" href="images/favicon.png">
+
+	
+	    <!-- Bootstrap core CSS -->
+	    <link href="/css/bootstrap.min.css" rel="stylesheet">
+	
+	    <!-- Custom styles for this template -->
+	    <link href="/css/offcanvas.css" rel="stylesheet">
+	
+	    <!-- Just for debugging purposes. Don't actually copy this line! -->
+	    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	
+	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+	    <![endif]-->
+	<c:if test="${not empty article.description}">
 			<meta name="description" content="${article.description}" />
 		</c:if>
 		<c:if test="${not empty article.keywords}">
@@ -43,6 +65,16 @@
 		<link rel="stylesheet" type="text/css" href="${articlesCssUrl}" />
 	</head>
 	<body>
+	
+		<%@ include file="/WEB-INF/jspf/navbar.jspf" %>
+	<div class="container">
+	 <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+          <p class="pull-right visible-xs">
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+          </p>
+          
 		<ul id="breadcrumbs">
 			<li><a href="${articlesUrl}">Articles</a></li>
 			<li><a href="1">${article.title}</a></li>
@@ -52,7 +84,6 @@
 		<%@ include file="/WEB-INF/jspf/articles/pageNav.jspf" %>
 		
 		<div id="articlePageBody">
-			<div><%@ include file="/WEB-INF/jspf/articles/social.jspf" %></div>
 			
 			<c:choose>
 				<c:when test="${articlePage.pageNumber == 1}">
@@ -81,14 +112,14 @@
 			</c:choose>
 			
 			<div>${articlePage.body}</div>
-			<div style="text-align:right"><%@ include file="/WEB-INF/jspf/articles/social.jspf" %></div>
 		</div>
 		
 		<%@ include file="/WEB-INF/jspf/articles/pageNav.jspf" %>
 		
 		<div class="panel"><%@ include file="/WEB-INF/jspf/comment/list.jspf" %></div>
 		<div class="panel"><%@ include file="/WEB-INF/jspf/comment/post.jspf" %></div>
-		
+	 </div> <!--  row -->
+	</div> <!--  container -->	
 		<script type="text/javascript" src="${shCoreJsUrl}"></script>
 		<script type="text/javascript" src="${shBrushJavaJsUrl}"></script>
 		<script type="text/javascript" src="${shBrushXmlJsUrl}"></script>
@@ -105,5 +136,11 @@
 				editor.run();
 			});
 		</script>
+		<!-- Bootstrap core JavaScript
+    	================================================== -->
+    	<!-- Placed at the end of the document so the pages load faster -->
+    	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    	<script src="/scripts/boostrap/bootstrap.min.js"></script>
+    	<script src="/scripts/bootstrap/offcanvas.js"></script>
 	</body>
 </html>

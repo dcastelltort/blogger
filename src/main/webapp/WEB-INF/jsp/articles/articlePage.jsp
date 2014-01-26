@@ -75,20 +75,11 @@
             <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
           </p>
           
-		<ul id="breadcrumbs">
-			<li><a href="${articlesUrl}">Articles</a></li>
-			<li><a href="1">${article.title}</a></li>
-			<li>Page ${articlePage.pageNumber}</li>
-		</ul>
-		
-		<%@ include file="/WEB-INF/jspf/articles/pageNav.jspf" %>
-		
 		<div id="articlePageBody">
 			
 			<c:choose>
 				<c:when test="${articlePage.pageNumber == 1}">
 					<div>
-						<div style="float:right;margin:0 0 10px 10px"><img src="${zoneItUrl}"></img></div>
 			
 						<c:if test="${not empty article.category}">
 							<div id="kicker">${article.category}</div>
@@ -115,7 +106,7 @@
 		</div>
 		
 		<%@ include file="/WEB-INF/jspf/articles/pageNav.jspf" %>
-		
+		<br />
 		<div class="panel"><%@ include file="/WEB-INF/jspf/comment/list.jspf" %></div>
 		<div class="panel"><%@ include file="/WEB-INF/jspf/comment/post.jspf" %></div>
 	 </div> <!--  row -->

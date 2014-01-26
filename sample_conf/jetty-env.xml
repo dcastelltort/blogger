@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<New id="blogger" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg></Arg>
+		<Arg>blogger</Arg>
+		<Arg>
+			<New class="org.apache.commons.dbcp.BasicDataSource">
+				<Set name="driverClassName">com.mysql.jdbc.Driver</Set>
+				<Set name="url">jdbc:mysql://192.168.0.29:3306/blogger?autoReconnect=true</Set>
+				<Set name="username">blogger</Set>
+				<Set name="password">blogger</Set>
+			</New>
+		</Arg>
+	</New>
+
+	<!-- Mailer -->
+	<!-- 
+         	<New id="MailSession" class="org.mortbay.jetty.plus.naming.Resource">
+		<Arg>mail/Session</Arg>
+		<Arg>
+			<New class="org.mortbay.naming.factories.MailSessionReference">
+				<Set name="user">your_username</Set>
+				<Set name="password">your_password</Set>
+				<Set name="properties">
+					<New class="java.util.Properties">
+						<Put name="mail.user">your_username</Put>
+						<Put name="mail.password">your_password</Put>
+						<Put name="mail.transport.protocol">smtp</Put>
+						<Put name="mail.smtp.host">smtp.gmail.com</Put>
+						<Put name="mail.smtp.port">587</Put>
+						<Put name="mail.smtp.auth">true</Put>
+						<Put name="mail.smtp.starttls.enable">true</Put>
+						<Put name="mail.debug">true</Put>
+					</New>
+				</Set>
+			</New>
+		</Arg>
+	</New>
+         -->	
+</Configure>

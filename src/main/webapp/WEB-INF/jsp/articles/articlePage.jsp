@@ -91,10 +91,10 @@
 							by <span class="user icon">${article.author}</span>
 							on <span class="date icon">${articleDate}</span>
 						</div>
-						
 						<c:if test="${not empty article.deck}">
 							<div id="deck">${article.deck}</div>
 						</c:if>
+						<br/>
 					</div>
 				</c:when>
 				<c:otherwise>

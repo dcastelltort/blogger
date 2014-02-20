@@ -28,9 +28,8 @@ public class CommentServiceImpl implements CommentService {
 
 	public void setTextFilter(TextFilter filter) { this.textFilter = filter; }
 	
-	/* (non-Javadoc)
-	 * @see com.springinpractice.ch09.comment.service.CommentService#postComment
-	 * (com.springinpractice.ch09.comment.model.Comment, com.springinpractice.ch09.comment.service.PostCommentCallback)
+	/* 
+	 * 
 	 */
 	@Override
 	public void postComment(final Comment comment, final PostCommentCallback callback) {

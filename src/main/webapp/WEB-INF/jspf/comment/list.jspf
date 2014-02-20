@@ -5,27 +5,29 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<div id="comments">
-	<h2>Comments (${fn:length(commentList)})</h2>
+<div id="comments" >
+	<h5>Comments (${fn:length(commentList)})</h5>
+	<small>
 	<c:choose>
 		<c:when test="${not empty commentList}">
 			<div id="commentsContainer">
 				<c:forEach var="comment" items="${commentList}">
 					<div id="comment-${comment.id}" class="comment">
-						<div class="body"><c:out value="${comment.htmlText}" escapeXml="false" /></div>
-						<div class="byline">
+						<div><c:out value="${comment.htmlText}" escapeXml="false" /></div>
+						<div>
 							by
 							<c:choose>
 								<c:when test="${empty comment.web}">
-									<span class="user icon"><c:out value="${comment.name}" /></span>
+									<span><c:out value="${comment.name}" /></span>
 								</c:when>
 								<c:otherwise>
-									<span class="user icon"><a href="<c:out value="${comment.web}" />" rel="nofollow"><c:out value="${comment.name}" /></a></span>
+									<span><a href="<c:out value="${comment.web}" />" rel="nofollow"><c:out value="${comment.name}" /></a></span>
 								</c:otherwise>
 							</c:choose>
-							on <span class="date icon"><fmt:formatDate type="both" timeStyle="short" value="${comment.dateCreated}" /></span>
+							on <span><fmt:formatDate type="both" timeStyle="short" value="${comment.dateCreated}" /></span>							
 						</div>
 					</div>
+					<br/>
 				</c:forEach>
 			</div>
 		</c:when>
@@ -33,4 +35,5 @@
 			<p>No comments.</p>
 		</c:otherwise>
 	</c:choose>
+	</small>
 </div>

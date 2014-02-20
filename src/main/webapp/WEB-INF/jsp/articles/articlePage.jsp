@@ -91,6 +91,7 @@
 							by <span class="user icon">${article.author}</span>
 							on <span class="date icon">${articleDate}</span>
 						</div>
+						<br/>
 						<c:if test="${not empty article.deck}">
 							<div id="deck">${article.deck}</div>
 						</c:if>
@@ -104,7 +105,7 @@
 			
 			<div>${articlePage.body}</div>
 		</div>
-		
+		<br />
 		<%@ include file="/WEB-INF/jspf/articles/pageNav.jspf" %>
 		<br />
 		<div class="panel"><%@ include file="/WEB-INF/jspf/comment/list.jspf" %></div>

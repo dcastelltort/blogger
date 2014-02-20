@@ -44,7 +44,7 @@
           </p>
           <div class="jumbotron">
             <h1>Everything technical</h1>
-            <p>Welcome on the blog of a programmer's journey.</p>
+            <p>Welcome to the blog of a programmer's journey thru technology.</p>
           </div>
           <div class="row">
             <c:choose>

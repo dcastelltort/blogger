@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.shenten.blogger.article.dao.ArticlePageDao;
-import com.shenten.blogger.article.dao.ArticlePageNotFoundDaoException;
 import com.shenten.blogger.article.model.Article;
 import com.shenten.blogger.article.model.ArticlePage;
 import com.shenten.framework.dao.hibernate.AbstractHbnDao;
@@ -17,7 +16,7 @@ import com.shenten.framework.dao.hibernate.AbstractHbnDao;
 public class HbnArticlePageDao extends AbstractHbnDao<ArticlePage> implements ArticlePageDao {
 	
 	@Override
-	public ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber) throws ArticlePageNotFoundDaoException {
+	public ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber) throws IllegalArgumentException {
 		Query q = getSession()
 			.getNamedQuery("getArticlePageByArticleNameAndPageNumber")
 			.setParameter("articleName", articleName)
@@ -28,8 +27,8 @@ public class HbnArticlePageDao extends AbstractHbnDao<ArticlePage> implements Ar
 		int numPages = (Integer) result[1];
 		
 		if (page == null) {
-			
-			throw new ArticlePageNotFoundDaoException(articleName, pageNumber);
+			// parameters were wrong so we could find the page
+			throw new IllegalArgumentException();
 		}
 		Article article = page.getArticle();
 		article.setCalculateStats(false);

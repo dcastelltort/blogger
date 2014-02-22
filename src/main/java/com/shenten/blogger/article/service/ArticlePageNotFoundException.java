@@ -7,13 +7,13 @@ package com.shenten.blogger.article.service;
  * @author shenten
  *
  */
-public class ArticlePageNotFoundException extends RuntimeException {
+public class ArticlePageNotFoundException extends Exception {
 
 	private String articleName;
 	private int pageNumber;
 	
-	public ArticlePageNotFoundException(String articleName, int pageNumber) {
-		super();
+	public ArticlePageNotFoundException(Throwable cause, String articleName, int pageNumber) {
+		super(cause);
 		setArticleName(articleName);
 		setPageNumber(pageNumber);
 	}

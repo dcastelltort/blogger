@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shenten.blogger.article.dao.ArticleDao;
 import com.shenten.blogger.article.dao.ArticlePageDao;
-import com.shenten.blogger.article.dao.ArticlePageNotFoundDaoException;
 import com.shenten.blogger.article.model.Article;
 import com.shenten.blogger.article.model.ArticlePage;
 import com.shenten.blogger.article.service.ArticlePageNotFoundException;
@@ -38,15 +37,15 @@ public class ArticleServiceImpl implements ArticleService {
 	
 	public List<Article> getAllArticles() { return articleDao.getAll(); }
 	
-	public ArticlePage getArticlePage(String articleName, int pageNumber) {
+	public ArticlePage getArticlePage(String articleName, int pageNumber) throws ArticlePageNotFoundException {
 		try {
 			ArticlePage page = pageDao.getByArticleNameAndPageNumber(articleName, pageNumber);
 			Hibernate.initialize(page.getArticle().getComments());
 			return page;
 		}
-		catch (ArticlePageNotFoundDaoException e)
+		catch (IllegalArgumentException cause)
 		{
-			throw new ArticlePageNotFoundException(articleName, pageNumber);
+			throw new ArticlePageNotFoundException(cause, articleName, pageNumber);
 		}
 	}
 	

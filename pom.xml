@@ -179,7 +179,12 @@
 					<jettyEnvXml>./sample_conf/jetty-env.xml</jettyEnvXml>
 				</webAppConfig>
 			</configuration>
-		</plugin>				
+		</plugin>
+		<plugin>
+        	<groupId>org.codehaus.mojo</groupId>
+        	<artifactId>sonar-maven-plugin</artifactId>
+        	<version>2.1</version>
+      </plugin>				
 	</plugins>
   </build>
 </project>

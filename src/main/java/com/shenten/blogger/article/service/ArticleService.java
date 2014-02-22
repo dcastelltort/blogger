@@ -20,7 +20,7 @@ public interface ArticleService {
 	 */
 	List<Article> getAllArticles();
 	
-	ArticlePage getArticlePage(String articleName, int pageNumber);
+	ArticlePage getArticlePage(String articleName, int pageNumber) throws ArticlePageNotFoundException;
 	
 	void postComment(String articleName, Comment comment);
 }

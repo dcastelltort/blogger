@@ -32,6 +32,7 @@ beans-web.xml
 		<entry key="articleList" value="articles/articleList" />
 		<entry key="articlePage" value="articles/articlePage" />
 		<entry key="postCommentFailed" value="articles/articlePage" />
+		<entry key="articlePageFailed" value="redirect:/articles.html" />
 	</util:map>
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

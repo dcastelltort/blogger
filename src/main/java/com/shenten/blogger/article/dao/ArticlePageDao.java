@@ -9,5 +9,5 @@ import com.shenten.framework.dao.Dao;
 
 public interface ArticlePageDao extends Dao<ArticlePage> {
 	
-	ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber);
+	ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber) throws ArticlePageNotFoundDaoException;
 }

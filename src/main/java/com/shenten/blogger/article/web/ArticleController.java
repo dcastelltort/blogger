@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.shenten.blogger.article.model.ArticlePage;
+import com.shenten.blogger.article.service.ArticlePageNotFoundException;
 import com.shenten.blogger.article.service.ArticleService;
 import com.shenten.blogger.comment.model.Comment;
 
@@ -36,6 +37,7 @@ public final class ArticleController {
 	@Value("#{viewNames.articleList}") private String articleListViewName;
 	@Value("#{viewNames.articlePage}") private String articlePageViewName;
 	@Value("#{viewNames.postCommentFailed}") private String postCommentFailedViewName;
+	@Value("#{viewNames.articlePageFailed}") private String articlePageFailedViewName;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -54,9 +56,13 @@ public final class ArticleController {
 			@PathVariable int pageNumber,
 			Model model) {
 		
-		prepareModel(model, articleName, pageNumber);
+		if (prepareModel(model, articleName, pageNumber)) {
 		model.addAttribute(new Comment());
 		return articlePageViewName;
+		}
+		else {
+			return articlePageFailedViewName;
+		}
 	}
 	
 	@RequestMapping(value = "/{articleName}/comments", method = RequestMethod.POST)
@@ -87,13 +93,21 @@ public final class ArticleController {
 	 * @param pageNumber
 	 * @param model
 	 */
-	private void prepareModel(Model model, String articleName, int pageNumber) {
-		ArticlePage page = articleService.getArticlePage(articleName, pageNumber);
-		
-		// articlePage.jsp expects this
-		model.addAttribute(page);
-		
-		// list.jspf (comment list) expects this
-		model.addAttribute(page.getArticle().getComments());
+	private Boolean prepareModel(Model model, String articleName, int pageNumber) {
+		try {
+			ArticlePage page = articleService.getArticlePage(articleName, pageNumber);
+			
+			// articlePage.jsp expects this
+			model.addAttribute(page);
+			
+			// list.jspf (comment list) expects this
+			model.addAttribute(page.getArticle().getComments());
+			return true;
+		}
+		catch(ArticlePageNotFoundException e) {
+			// send an empty article page
+			model.addAttribute(new ArticlePage());
+			return false;
+		}
 	}
 }

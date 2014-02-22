@@ -107,7 +107,18 @@ public final class Comment implements Comparable<Comment> {
 
 	public void setDateCreated(Date date) { this.dateCreated = date; }
 
+	@Override
 	public int compareTo(Comment o) {
 		return dateCreated.compareTo(o.dateCreated);
+	}
+	
+	 @Override
+	 public boolean equals(Object o) { 
+		 if (o == null || o.getClass() != this.getClass()) {
+			 return false;
+		 }
+		 else {
+			 return dateCreated.equals(((Comment)o).dateCreated);
+		 }
 	}
 }

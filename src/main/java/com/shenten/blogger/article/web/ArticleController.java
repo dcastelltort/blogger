@@ -94,20 +94,24 @@ public final class ArticleController {
 	 * @param model
 	 */
 	private Boolean prepareModel(Model model, String articleName, int pageNumber) {
+		
+		ArticlePage page = new ArticlePage();
+		
 		try {
-			ArticlePage page = articleService.getArticlePage(articleName, pageNumber);
-			
-			// articlePage.jsp expects this
-			model.addAttribute(page);
-			
-			// list.jspf (comment list) expects this
-			model.addAttribute(page.getArticle().getComments());
-			return true;
+			page = articleService.getArticlePage(articleName, pageNumber);
 		}
 		catch(ArticlePageNotFoundException e) {
 			// send an empty article page
-			model.addAttribute(new ArticlePage());
+			log.error("article page not found", e);
+			model.addAttribute(page);
 			return false;
 		}
+
+		// articlePage.jsp expects this
+		model.addAttribute(page);
+		
+		// list.jspf (comment list) expects this
+		model.addAttribute(page.getArticle().getComments());
+		return true;
 	}
 }

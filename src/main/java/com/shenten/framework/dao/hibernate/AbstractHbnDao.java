@@ -13,14 +13,19 @@ import javax.inject.Inject;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.ReflectionUtils;
 
+import com.shenten.blogger.article.web.ArticleController;
 import com.shenten.framework.dao.Dao;
 
 /**
  * @author 
  */
 public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
+	private static final Logger log = LoggerFactory.getLogger(AbstractHbnDao.class);
+	
 	@Inject private SessionFactory sessionFactory;
 	private Class<T> domainClass;
 	
@@ -50,6 +55,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 				method.invoke(t, new Date());
 			} catch (Exception e) {
 				// Ignore any exception here; simply abort the setDate() attempt
+				log.error("uncatched invoke exception", e);
 			}
 		}
 		

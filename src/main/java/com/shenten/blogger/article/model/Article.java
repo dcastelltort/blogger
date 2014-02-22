@@ -62,23 +62,37 @@ public final class Article {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	public Long getId() { return id; }
+	public Long getId() { 
+		return id; 
+	}
 	
 	@SuppressWarnings("unused")
-	private void setId(Long id) { this.id = id; }
+	private void setId(Long id) { 
+		this.id = id; 
+	}
 	
 	@Column(name = "category")
-	public String getCategory() { return category; }
+	public String getCategory() { 
+		return category; 
+	}
 	
-	public void setCategory(String category) { this.category = category; }
+	public void setCategory(String category) { 
+		this.category = category; 
+	}
 	
 	@Column(name = "name")
-	public String getName() { return name; }
+	public String getName() { 
+		return name; 
+	}
 	
-	public void setName(String name) { this.name = name; }
+	public void setName(String name) { 
+		this.name = name; 
+	}
 
 	@Column(name = "title")
-	public String getTitle() { return title; }
+	public String getTitle() { 
+		return title; 
+	}
 	
 	/**
 	 * <p>
@@ -87,57 +101,97 @@ public final class Article {
 	 * 
 	 * @param title article title
 	 */
-	public void setTitle(String title) { this.title = title; }
+	public void setTitle(String title) { 
+		this.title = title; 
+	}
 	
 	@Column(name = "author")
-	public String getAuthor() { return author; }
+	public String getAuthor() { 
+		return author; 
+	}
 	
-	public void setAuthor(String author) { this.author = author; }
+	public void setAuthor(String author) { 
+		this.author = author; 
+	}
 	
 	@Column(name = "date_created")
-	public Date getDateCreated() { return dateCreated; }
+	public Date getDateCreated() { 
+		return dateCreated; 
+	}
 	
-	public void setDateCreated(Date date) { this.dateCreated = date; }
+	public void setDateCreated(Date date) { 
+		this.dateCreated = date; 
+	}
 	
 	@Column(name = "deck")
-	public String getDeck() { return deck; }
+	public String getDeck() { 
+		return deck; 
+	}
 	
-	public void setDeck(String deck) { this.deck = deck; }
+	public void setDeck(String deck) { 
+		this.deck = deck; 
+	}
 	
 	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
 	@OrderBy("pageNumber")
-	public List<ArticlePage> getPages() { return pages; }
+	public List<ArticlePage> getPages() { 
+		return pages; 
+	}
 	
-	public void setPages(List<ArticlePage> pages) { this.pages = pages; }
+	public void setPages(List<ArticlePage> pages) { 
+		this.pages = pages; 
+	}
 	
 	@Column(name = "description")
-	public String getDescription() { return description; }
+	public String getDescription() { 
+		return description; 
+	}
 	
-	public void setDescription(String desc) { this.description = desc; }
+	public void setDescription(String desc) { 
+		this.description = desc; 
+	}
 	
 	@Column(name = "keywords")
-	public String getKeywords() { return keywords; }
+	public String getKeywords() { 
+		return keywords; 
+	}
 	
-	public void setKeywords(String keywords) { this.keywords = keywords; }
+	public void setKeywords(String keywords) { 
+		this.keywords = keywords; 
+	}
 	
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 //	@Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
 	@JoinColumn(name = "comment_target_id")
-	private CommentTarget getCommentTarget() { return commentTarget; }
+	private CommentTarget getCommentTarget() { 
+		return commentTarget; 
+	}
 	
 	@SuppressWarnings("unused")
-	private void setCommentTarget(CommentTarget target) { this.commentTarget = target; }
+	private void setCommentTarget(CommentTarget target) { 
+		this.commentTarget = target; 
+	}
 	
 	@Transient
-	public List<Comment> getComments() { return commentTarget.getComments(); }
+	public List<Comment> getComments() { 
+		return commentTarget.getComments(); 
+	}
 	
 	@Transient
-	public boolean getCalculateStats() { return calculateStats; }
+	public boolean getCalculateStats() { 
+		return calculateStats; 
+	}
 	
-	public void setCalculateStats(boolean flag) { this.calculateStats = flag; }
+	public void setCalculateStats(boolean flag) {
+		this.calculateStats = flag; 
+	}
 	
 	@Transient
-	public int getNumPages() { return (calculateStats ? pages.size() : numPages); }
+	public int getNumPages() { 
+		return (calculateStats ? pages.size() : numPages); 
+	}
 	
-	public void setNumPages(int n) { this.numPages = n; }
+	public void setNumPages(int n) { 
+		this.numPages = n; 
+	}
 }

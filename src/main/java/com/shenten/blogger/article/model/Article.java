@@ -40,7 +40,12 @@ import com.shenten.blogger.comment.model.CommentTarget;
 			" group by article"),
 	@NamedQuery(
 		name = "getArticleByName",
-		query = "from Article article where article.name = :name")
+		query = "from Article article where article.name = :name"),
+	
+	@NamedQuery(
+			name = "getCategories",
+			query = "select article.category" +
+				" from Article as article")
 })
 public final class Article {
 	private Long id;

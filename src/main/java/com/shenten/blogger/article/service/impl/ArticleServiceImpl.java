@@ -35,7 +35,14 @@ public class ArticleServiceImpl implements ArticleService {
 	@Inject private ArticlePageDao pageDao;
 	@Inject private CommentService commentService;
 	
-	public List<Article> getAllArticles() { return articleDao.getAll(); }
+	public List<Article> getArticles(String category) { 
+		
+		return articleDao.getArticles(category); 
+	}
+	
+	public List<String> getCategories() {
+		return articleDao.getCategories();
+	}
 	
 	public ArticlePage getArticlePage(String articleName, int pageNumber) throws ArticlePageNotFoundException {
 		try {

@@ -45,8 +45,9 @@ public final class ArticleController {
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String getArticles(Model model) {
-		model.addAttribute(articleService.getAllArticles());
+	public String getArticles(String category, Model model) {
+		model.addAttribute(articleService.getArticles(category));
+		model.addAttribute("categories", articleService.getCategories());
 		return articleListViewName;
 	}
 	

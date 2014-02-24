@@ -66,17 +66,18 @@
         </div><!--/span-->
 
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <a href="#" class="list-group-item">Link</a>
           <div class="list-group">
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
-            <a href="#" class="list-group-item">Link</a>
+          	<a href="/articles" class="list-group-item">All</a>
+          <c:choose>
+          	<c:when test="${empty categories}">
+					<span class = "list-group-item">No categories.</span>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="category" items="${categories}">
+            		<a href="/articles?category=${category}" class="list-group-item">${category}</a>
+            	</c:forEach>
+            </c:otherwise>
+          </c:choose>
           </div>
         </div><!--/span-->
       </div><!--/row-->

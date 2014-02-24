@@ -18,7 +18,9 @@ public interface ArticleService {
 	 * 
 	 * @return all articles, but without comments
 	 */
-	List<Article> getAllArticles();
+	List<Article> getArticles(String category);
+	
+	List<String> getCategories();
 	
 	ArticlePage getArticlePage(String articleName, int pageNumber) throws ArticlePageNotFoundException;
 	

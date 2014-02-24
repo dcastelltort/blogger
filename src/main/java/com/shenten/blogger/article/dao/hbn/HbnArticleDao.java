@@ -20,20 +20,30 @@ public class HbnArticleDao extends AbstractHbnDao<Article> implements ArticleDao
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<Article> getAll() {
+		return getArticles("");
+	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<Article> getArticles(String category) {
 		Query q = getSession().getNamedQuery("getArticlesWithNumPages");
 		List<Object[]> results = (List<Object[]>) q.list();
 		List<Article> articles = new ArrayList<Article>();
 		for (Object[] result : results) {
 			Article article = (Article) result[0];
-			long resultLong = ((Long) result[1]) ; 
-			int numPages =  resultLong > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) resultLong; 
-			
-			article.setCalculateStats(false);
-			article.setNumPages(numPages);
-			articles.add(article);
+			// no category (empty) or matching category then add
+			if (category == null || category.isEmpty() || article.getCategory().equals(category)) {
+				long resultLong = ((Long) result[1]) ; 
+				int numPages =  resultLong > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) resultLong; 
+				
+				article.setCalculateStats(false);
+				article.setNumPages(numPages);
+				articles.add(article);
+			}
 		}
 		return articles;
 	}
+	
 	
 	@Override
 	public Article getByName(String name) {
@@ -41,5 +51,20 @@ public class HbnArticleDao extends AbstractHbnDao<Article> implements ArticleDao
 			.getNamedQuery("getArticleByName")
 			.setParameter("name", name)
 			.uniqueResult();
+	}
+	
+	@Override
+	public List<String> getCategories() {
+		List<String> categories = new ArrayList<String>();
+		
+		Query q = getSession().getNamedQuery("getCategories");
+		List<Object> results = (List<Object>) q.list();
+		
+		for (Object result : results) {
+			String category = (String) result;
+			categories.add(category);
+			}
+		
+		return categories;
 	}
 }

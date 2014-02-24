@@ -23,8 +23,6 @@ import com.shenten.blogger.comment.model.Comment;
 import com.shenten.blogger.comment.service.CommentService;
 import com.shenten.blogger.comment.service.PostCommentCallback;
 
-
-
 @Service
 @Transactional(
 	propagation = Propagation.REQUIRED,
@@ -50,8 +48,7 @@ public class ArticleServiceImpl implements ArticleService {
 			Hibernate.initialize(page.getArticle().getComments());
 			return page;
 		}
-		catch (IllegalArgumentException cause)
-		{
+		catch (IllegalArgumentException cause) {
 			throw new ArticlePageNotFoundException(cause, articleName, pageNumber);
 		}
 	}

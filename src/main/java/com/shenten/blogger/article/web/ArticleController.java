@@ -30,7 +30,7 @@ import com.shenten.blogger.comment.model.Comment;
 @Controller
 @RequestMapping("/articles")
 public final class ArticleController {
-	private static final Logger log = LoggerFactory.getLogger(ArticleController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(ArticleController.class);
 	
 	@Inject private ArticleService articleService;
 	
@@ -76,14 +76,14 @@ public final class ArticleController {
 			BindingResult result) {
 		
 		if (result.hasErrors()) {
-			log.debug("Comment validation error");
+			LOG.debug("Comment validation error");
 			result.reject("global.error");
 			prepareModel(model, articleName, pageNumber);
 			return postCommentFailedViewName;
 		}
 		
 		// No validation errors; post comment.
-		log.debug("Posting comment");
+		LOG.debug("Posting comment");
 		comment.setIpAddress(req.getRemoteAddr());
 		articleService.postComment(articleName, comment);
 		return "redirect:" + pageNumber + "#comment-" + comment.getId();
@@ -103,7 +103,7 @@ public final class ArticleController {
 		}
 		catch(ArticlePageNotFoundException e) {
 			// send an empty article page
-			log.error("article page not found", e);
+			LOG.error("article page not found", e);
 			model.addAttribute(page);
 			return false;
 		}

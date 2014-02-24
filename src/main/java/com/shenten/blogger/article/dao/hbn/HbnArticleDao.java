@@ -33,7 +33,7 @@ public class HbnArticleDao extends AbstractHbnDao<Article> implements ArticleDao
 			Article article = (Article) result[0];
 			// no category (empty) or matching category then add
 			if (category == null || category.isEmpty() || article.getCategory().equals(category)) {
-				long resultLong = ((Long) result[1]) ; 
+				long resultLong = (Long) result[1]; 
 				int numPages =  resultLong > Integer.MAX_VALUE ? Integer.MAX_VALUE : (int) resultLong; 
 				
 				article.setCalculateStats(false);

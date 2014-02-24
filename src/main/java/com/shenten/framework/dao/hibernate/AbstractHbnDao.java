@@ -24,7 +24,7 @@ import com.shenten.framework.dao.Dao;
  * @author 
  */
 public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
-	private static final Logger log = LoggerFactory.getLogger(AbstractHbnDao.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AbstractHbnDao.class);
 	
 	@Inject private SessionFactory sessionFactory;
 	private Class<T> domainClass;
@@ -42,7 +42,9 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	    return domainClass;
 	}
 	
-	private String getDomainClassName() { return getDomainClass().getName(); }
+	private String getDomainClassName() { 
+		return getDomainClass().getName(); 
+	}
 	
 	@Override
 	public void create(T t) {
@@ -55,7 +57,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 				method.invoke(t, new Date());
 			} catch (Exception e) {
 				// Ignore any exception here; simply abort the setDate() attempt
-				log.error("uncatched invoke exception", e);
+				LOG.error("uncatched invoke exception", e);
 			}
 		}
 		
@@ -84,15 +86,21 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	
 
 	@Override
-	public void update(T t) { getSession().update(t); }
+	public void update(T t) { 
+		getSession().update(t); 
+	}
 	
 
 	@Override
-	public void delete(T t) { getSession().delete(t); }
+	public void delete(T t) { 
+		getSession().delete(t); 
+	}
 	
 
 	@Override
-	public void deleteById(Serializable id) { delete(load(id)); }
+	public void deleteById(Serializable id) { 
+		delete(load(id)); 
+	}
 	
 
 	@Override
@@ -111,5 +119,7 @@ public abstract class AbstractHbnDao<T extends Object> implements Dao<T> {
 	}
 	
 	@Override
-	public boolean exists(Serializable id) { return (get(id) != null); }
+	public boolean exists(Serializable id) { 
+		return get(id) != null; 
+	}
 }

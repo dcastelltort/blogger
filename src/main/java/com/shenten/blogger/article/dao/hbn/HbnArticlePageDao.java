@@ -16,7 +16,7 @@ import com.shenten.framework.dao.hibernate.AbstractHbnDao;
 public class HbnArticlePageDao extends AbstractHbnDao<ArticlePage> implements ArticlePageDao {
 	
 	@Override
-	public ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber) throws IllegalArgumentException {
+	public ArticlePage getByArticleNameAndPageNumber(String articleName, int pageNumber) {
 		Query q = getSession()
 			.getNamedQuery("getArticlePageByArticleNameAndPageNumber")
 			.setParameter("articleName", articleName)

@@ -14,8 +14,8 @@ public class ArticlePageNotFoundException extends Exception {
 	
 	public ArticlePageNotFoundException(Throwable cause, String articleName, int pageNumber) {
 		super(cause);
-		setArticleName(articleName);
-		setPageNumber(pageNumber);
+		this.articleName = articleName;
+		this.pageNumber = pageNumber;
 	}
 	/**
 	 * @return the articleName

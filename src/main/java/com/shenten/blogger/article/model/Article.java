@@ -193,7 +193,7 @@ public final class Article {
 	
 	@Transient
 	public int getNumPages() { 
-		return (calculateStats ? pages.size() : numPages); 
+		return calculateStats ? pages.size() : numPages; 
 	}
 	
 	public void setNumPages(int n) { 

@@ -29,29 +29,49 @@ public class ArticlePage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
-	public Long getId() { return id; }
+	public Long getId() { 
+		return id; 
+	}
 	
 	@SuppressWarnings("unused")
-	private void setId(Long id) { this.id = id; }
+	private void setId(Long id) { 
+		this.id = id; 
+	}
 	
 	@ManyToOne
 	@JoinColumn(name = "article_id", nullable = false)
-	public Article getArticle() { return article; }
+	public Article getArticle() { 
+		return article; 
+	}
 	
-	public void setArticle(Article article) { this.article = article; }
+	public void setArticle(Article article) { 
+		this.article = article; 
+	}
 	
 	@Column(name = "page_number")
-	public int getPageNumber() { return pageNumber; }
+	public int getPageNumber() { 
+		return pageNumber; 
+	}
 	
-	public void setPageNumber(int pageNumber) { this.pageNumber = pageNumber; }
+	public void setPageNumber(int pageNumber) { 
+		this.pageNumber = pageNumber; 
+	}
 	
 	@Column(name = "title")
-	public String getTitle() { return title; }
+	public String getTitle() { 
+		return title;
+	}
 	
-	public void setTitle(String title) { this.title = title; }
+	public void setTitle(String title) {
+		this.title = title; 
+	}
 	
 	@Column(name = "body")
-	public String getBody() { return body; }
+	public String getBody() { 
+		return body; 
+	}
 	
-	public void setBody(String body) { this.body = body; }
+	public void setBody(String body) { 
+		this.body = body; 
+	}
 }

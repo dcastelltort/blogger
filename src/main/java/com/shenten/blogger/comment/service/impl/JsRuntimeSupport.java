@@ -21,7 +21,7 @@ import org.springframework.core.io.ClassPathResource;
  */
 @SuppressWarnings("serial")
 public class JsRuntimeSupport extends ScriptableObject {
-	private static final Logger log = LoggerFactory.getLogger(JsRuntimeSupport.class);
+	private static final Logger LOG = LoggerFactory.getLogger(JsRuntimeSupport.class);
 
 	/* (non-Javadoc)
 	 * @see org.mozilla.javascript.ScriptableObject#getClassName()
@@ -31,7 +31,7 @@ public class JsRuntimeSupport extends ScriptableObject {
 	
 	public static void print(Context ctx, Scriptable thisObj, Object[] args, Function func) {
 		for (int i = 0; i < args.length; i++) {
-			log.info(Context.toString(args[i]));
+			LOG.info(Context.toString(args[i]));
 		}
 	}
 	
@@ -39,7 +39,7 @@ public class JsRuntimeSupport extends ScriptableObject {
 		JsRuntimeSupport support = (JsRuntimeSupport) getTopLevelScope(thisObj);
 		for (int i = 0; i < args.length; i++) {
 			String filename = Context.toString(args[i]);
-			log.info("Loading file: {}", filename);
+			LOG.info("Loading file: {}", filename);
 			support.processSource(ctx, filename);
 		}
 	}

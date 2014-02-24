@@ -129,18 +129,23 @@ public final class Comment implements Comparable<Comment> {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (!(obj instanceof Comment))
+		}
+		if (!(obj instanceof Comment)) {
 			return false;
+		}
 		Comment other = (Comment) obj;
 		if (dateCreated == null) {
-			if (other.dateCreated != null)
+			if (other.dateCreated != null) {
 				return false;
-		} else if (!dateCreated.equals(other.dateCreated))
+			}
+		} else if (!dateCreated.equals(other.dateCreated)) {
 			return false;
+		}
 		return true;
 	}
 }
